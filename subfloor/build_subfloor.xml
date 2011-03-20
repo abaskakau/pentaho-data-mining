@@ -1,0 +1,23 @@
+<project name="weka3.6" default="default" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+  <import file="subfloor.xml"/>
+
+  <description>
+    Subfloor-driven build file for basic weka artifacts
+  </description>
+  
+  <tstamp prefix="start"/>
+
+  <target name="dist" description="make the weka exe jar file and copy it to dist using the correct naming">
+    <ant antfile="build.xml" dir="../weka" target="exejar" inheritall="false"/>    
+    <copy file="../weka/dist/weka.jar" tofile="${dist.dir}/${ivy.artifact.id}-${project.revision}.jar"/>
+  </target>
+
+  <target name="dist-source" description="make the weka src jar file and copy it to dist using the correct naming">
+    <ant antfile="build.xml" dir="../weka" target="srcjar" inheritall="false"/>
+    <copy file="../weka/dist/weka-src.jar" tofile="${dist.dir}/${ivy.artifact.id}-${project.revision}-sources.jar"/>
+  </target>
+
+  <target name="clean-weka" description="clean everything" depends="clean-all">
+    <ant antfile="build.xml" dir="../weka" target="clean" inheritall="false"/>
+  </target>
+</project>
