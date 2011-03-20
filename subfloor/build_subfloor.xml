@@ -16,4 +16,8 @@
     <ant antfile="build.xml" dir="../weka" target="srcjar" inheritall="false"/>
     <copy file="../weka/dist/weka-src.jar" tofile="${dist.dir}/${ivy.artifact.id}-${project.revision}-sources.jar"/>
   </target>
+
+  <target name="clean-weka" description="clean everything" depends="clean-all">
+    <ant antfile="build.xml" dir="../weka" target="clean" inheritall="false"/>
+  </target>
 </project>
